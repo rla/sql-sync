@@ -206,6 +206,14 @@ Applying deletes on the server (per deleted row):
     DELETE FROM <table>
     WHERE <keycol> = value;
 
+Multiuser case
+--------------
+
+When data is kept by user (data tables contain some sort of user id)
+then the `revision` table on the server side must also contain user id.
+Queries on the server must take it into account (add to `WHERE` clauses
+or `SET` user id when inserting).
+
 Sync data over HTTP
 -------------------
 
