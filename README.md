@@ -124,18 +124,18 @@ each data table:
 
     CREATE TRIGGER <table>_insert
     AFTER INSERT ON <table> FOR EACH ROW
-    BEGIN CALL sync_mark(NEW.<keycol>, 0, 0); END
+    BEGIN CALL sync_mark(NEW.<keycol>, <tableid>, 0); END
     
     CREATE TRIGGER <table>_update
     AFTER UPDATE ON <table> FOR EACH ROW
     BEGIN
-        CALL sync_mark(OLD.<keycol>, 0, 1);
-        CALL sync_mark(NEW.<keycol>, 0, 0);
+        CALL sync_mark(OLD.<keycol>, <tableid>, 1);
+        CALL sync_mark(NEW.<keycol>, <tableid>, 0);
     END
     
     CREATE TRIGGER <table>_delete
     AFTER DELETE ON <table> FOR EACH ROW
-    BEGIN CALL sync_mark(OLD.<keycol>, 0, 1); END
+    BEGIN CALL sync_mark(OLD.<keycol>, <tableid>, 1); END
 
 General algorithm
 -----------------
