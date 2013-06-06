@@ -1,0 +1,11 @@
+{
+    "name": "sql-sync",
+    "version": "0.0.1",
+    "dependencies": {
+        "sqlite3": "x",
+        "node-uuid": "x",
+        "async": "x",
+        "mysql": "2.0.0-alpha8",
+        "mocha": "x"
+    }
+} 
