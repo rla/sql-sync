@@ -18,7 +18,7 @@ updates must be reordered correctly (complicates the code a lot!).
 It is possible to use [natural keys](http://en.wikipedia.org/wiki/Natural_key)
 instead of UUIDs but there do not always exist good natural keys.
 In most cases large composite keys would have to be used.
-It is not possible to use autoincremented because of key value conflicts.
+It is not possible to use autoincremented keys because of key value conflicts.
 
 Metainfo
 --------
@@ -55,7 +55,7 @@ In the table:
 * name - table name.
 * keycol - name of primary key column in the table.
 
-For each table in the table the following triggers have
+For each table in `sync_table` the following triggers have
 to be created:
 
     CREATE TRIGGER <table>_insert
@@ -81,15 +81,15 @@ to be created:
         VALUES (1, OLD.<keycol>, <tableid>);
     END;
 
-A special table is used for storing the last revision number on the
-server. This is sent with each sync request (but is not updated on
-each table action on the client):
+A special table is used for storing the last revision number (given by the
+server at the end of sync). This is sent with each sync request (but is not updated on
+each data table action on the client):
 
     CREATE TABLE revision (
         rev UNSIGNED BIG INT NOT NULL
     );
 
-The metainfo tables on the server are similar. The main difference is
+Metainfo tables on the server are similar. The main difference is
 in the `sync` table:
 
     CREATE TABLE sync (
